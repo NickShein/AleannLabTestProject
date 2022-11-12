@@ -1,0 +1,94 @@
+<ng-container *ngIf="pageLoading">
+  <div class="container">
+    <section class="main">
+      <div class="title_section underline">
+        <p class="title titles_styling">Job Details</p>
+        <div class="action_section">
+          <p class="save">Save to my list</p>
+          <p class="share">Share</p>
+        </div>
+      </div>
+      <button class="apply" id="apply-btn-1">APPLY NOW</button>
+      <div class="job-title-section">
+        <div class="job-title">{{job.title}}</div>
+        <div class="job-salary">
+          <p class="salary-value">&#8364;&nbsp;{{job.salary.replaceAll('k', ' 000').replace('-','&mdash;')}}</p>
+          <p class="salary-description">Brutto, per year</p>
+        </div>
+      </div>
+      <div class="post-date-section">
+        <div class="post_date">Posted {{actualDayCounting(job.updatedAt)}} days ago</div>
+        <div class="job-salary-phone">
+          <p class="salary-description">Brutto, per year</p>
+          <p class="salary-value">&#8364;&nbsp;{{job.salary.replaceAll('k', ' 000').replace('-','&mdash;')}}</p>
+        </div>
+      </div>
+      <div class="job-description">{{job.description.split('Responsopilities')[0]}}<br>
+        <br>
+        <br><b>Responsopilities</b><br>
+        <br>
+        {{job.description.split('Responsopilities:')[1].split('Compensation & Benefits:')[0]}}<br>
+        <br>
+        <br>
+        <b>Compensation & Benefits:</b></div><br>
+        <br>
+        <ul class="benefits"><li *ngFor="let benefit of benefits;let i = index">{{benefit}}</li></ul><br>
+        <div class="btn-apply-container">
+          <button class="apply" id="btn2">APPLY NOW</button>
+        </div>
+        <div class="additional_container">
+          <div class="additional_section">
+            <div class="additional-title titles_styling underline mobile_underline">
+              Additional Info
+            </div>
+            <div class="employment">
+              <p class="employment-header e-header">
+                Employment type
+              </p>
+              <div class="employment_container e-container">
+                <div class="employment-type e-type" *ngFor="let eType of job.employment_type">{{eType.replace(' ','-')}}</div>
+              </div>
+              <p class="benefits-header e-header">
+                Benefits
+              </p>
+              <div class="benefits_container e-container">
+                <div class="benefits-type e-type" *ngFor="let eType of job.benefits">{{eType}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="attached_section">
+            <div class="attached-header titles_styling underline mobile_underline">
+              Attached images
+            </div>
+            <div class="images_container">
+              <div src="" class="attached__img" *ngFor="let item of job.pictures;let i = index"><img [src]="setTimeoutImages(item, i)" class="a_img" alt="attached image №{{i + 1}}"></div>
+            </div>
+          </div>
+        </div>
+        <div class="btn_container">
+          <button class="return-btn" [routerLink]="''"><span>RETURN TO JOB BOARD</span></button>
+        </div>
+    </section>
+    <section class="aside">
+      <div class="Contacts-title titles_styling underline mobile_underline">
+        Contacts
+      </div>
+      <div class="map_container">
+        <div class="contact-info-bg">
+          <div class="contact-info-content">
+            <div class="contact-info__header">
+              Department name. <br>{{job.name}}.
+            </div>
+            <div class="contact-info__content">
+              <p><span class="location-mark"></span>{{job.address}}</p>
+              <p>{{job.phone}},<br>{{job.email}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="map">
+          <app-map [job]='job'></app-map>
+        </div>
+      </div>
+    </section>
+  </div>
+</ng-container>

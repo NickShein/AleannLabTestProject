@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css?family=Proxima+Nova');
+@import '~maplibre-gl/dist/maplibre-gl.css';
+
+html{
+  background: #E6E9F2;
+  font-family:  'proxima-nova', sans-serif;
+}
+
+*,
+*::after,
+*::before{
+  margin: 0;
+  padding: 0;
+}
+/* custom scrollbar for test project*/
+::-webkit-scrollbar {
+  width: 14px;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 4px solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+  border-radius: 9999px;
+  background-color: #AAAAAA;
+}
+
+input.star ~ label.star:before {
+  color: #384564;
+}
